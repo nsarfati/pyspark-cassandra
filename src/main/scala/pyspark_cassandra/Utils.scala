@@ -35,7 +35,9 @@ object Utils {
         case (key, "overwrite") => CollectionColumnName(key, None, CollectionOverwrite)
         case (key, "prepend") => CollectionColumnName(key, None, CollectionPrepend)
         case (key, "remove") => CollectionColumnName(key, None, CollectionRemove)
-        case (key, _) => ColumnName(key)
+        case (key, "") => ColumnName(key)
+        case (key, _) => throw new IllegalArgumentException("The only possible values are: " +
+          "append/add/overwrite/prepend/remove or empty")
       }): _*)
 
     } else {
